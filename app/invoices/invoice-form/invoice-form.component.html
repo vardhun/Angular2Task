@@ -1,0 +1,12 @@
+<div class="panel panel-default col-md-6">
+    <div class="panel-body">
+        <div class="row">
+            <div class= "col-md-10">
+                <input type="text" name="invoice" placeholder="Invoice Name" #invoiceInput class="form-control">
+            </div>
+            <div class= "col-md-2">
+                <button type="button" class="btn btn-primary" (click)="add(invoiceInput.value); invoiceInput.value = ''"><i class="glyphicon glyphicon-plus"></i> Add</button>
+            </div>                    
+        </div>
+    </div>
+</div>

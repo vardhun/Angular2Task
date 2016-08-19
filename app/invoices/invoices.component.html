@@ -1,0 +1,6 @@
+<div class="row">
+    <invoice-form (added)="onInvoiceAdded($event)"></invoice-form>
+    <invoice-search></invoice-search>
+</div>
+
+<invoice-list [invoices]="invoices" (deleted)="onInvoiceDeleted($event)" (duplicated)="onInvoiceDuplicated($event)"></invoice-list>

@@ -1,0 +1,12 @@
+<div class="panel panel-default col-md-6">
+  <div class="panel-body">
+    <div id="search-component">
+      <input #searchBox id="search-box" (keyup)="search(searchBox.value)" class="form-control" placeholder="Search invoice"/>
+    </div>
+    <div>
+    <div *ngFor="let invoice of invoices | async" class="search-result" >
+      {{invoice.name}}
+    </div>
+  </div>
+  </div>
+</div>

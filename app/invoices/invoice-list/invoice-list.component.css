@@ -1,0 +1,8 @@
+invoice-item {
+    display: flex;
+    align-items: center;
+}
+
+invoice-item:not(:last-child) {
+    margin-bottom: 15px;
+}

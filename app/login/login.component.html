@@ -1,0 +1,11 @@
+<form #form="ngForm" (ngSubmit)="logForm(form.value)">
+  <label>Login:</label>
+  <input type="text" name="login" ngModel>
+
+  <label>Password:</label>
+  <input type="text" name="password" ngModel>
+
+
+
+  <button type="submit">Sign In</button>
+</form>
