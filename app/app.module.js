@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var platform_browser_1 = require('@angular/platform-browser');
 var forms_1 = require('@angular/forms');
+var forms_2 = require('@angular/forms');
 var http_1 = require('@angular/http');
 var http_2 = require('@angular/http');
 var angular2_in_memory_web_api_1 = require('angular2-in-memory-web-api');
@@ -20,19 +21,20 @@ var app_routing_1 = require('./app.routing');
 var invoice_form_component_1 = require('./invoices/invoice-form/invoice-form.component');
 var invoice_item_component_1 = require('./invoices/invoice-item/invoice-item.component');
 var invoice_list_component_1 = require('./invoices/invoice-list/invoice-list.component');
-var invoice_search_component_1 = require('./invoices/invoice-search/invoice-search.component');
 var invoices_component_1 = require('./invoices/invoices.component');
-var invoice_service_1 = require('./invoices/invoice.service');
+var invoice_service_1 = require('./shared/invoice.service');
+var authentication_service_1 = require('./shared/authentication.service');
 var AppModule = (function () {
     function AppModule() {
     }
     AppModule = __decorate([
         core_1.NgModule({
-            imports: [platform_browser_1.BrowserModule, forms_1.FormsModule, app_routing_1.routing, http_1.HttpModule],
+            imports: [platform_browser_1.BrowserModule, forms_1.FormsModule, app_routing_1.routing, http_1.HttpModule, forms_2.ReactiveFormsModule],
             declarations: [app_component_1.AppComponent,
-                invoices_component_1.InvoicesComponent, invoice_form_component_1.InvoiceFormComponent, invoice_item_component_1.InvoiceItemComponent, invoice_list_component_1.InvoiceListComponent, invoice_search_component_1.InvoiceSearchComponent],
+                invoices_component_1.InvoicesComponent, invoice_form_component_1.InvoiceFormComponent, invoice_item_component_1.InvoiceItemComponent, invoice_list_component_1.InvoiceListComponent],
             providers: [
                 invoice_service_1.InvoiceService,
+                authentication_service_1.AuthenticationService,
                 { provide: http_2.XHRBackend, useClass: angular2_in_memory_web_api_1.InMemoryBackendService },
                 { provide: angular2_in_memory_web_api_1.SEED_DATA, useClass: in_memory_data_service_1.InMemoryDataService } // in-mem server data
             ],

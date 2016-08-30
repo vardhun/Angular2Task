@@ -1,6 +1,14 @@
+<div class="container" >
+    <div class="content">
+        <span>You have successfully logged in!!</span>
+        <br />
+        <a (click)="logout()" href="#">Click Here to logout</a>
+    </div>
+</div>
+<br/>
 <div class="row">
     <invoice-form (added)="onInvoiceAdded($event)"></invoice-form>
-    <invoice-search></invoice-search>
+    <!--<invoice-search (searched) = "onInvoiceSearched($event)"></invoice-search>-->
 </div>
 
 <invoice-list [invoices]="invoices" (deleted)="onInvoiceDeleted($event)" (duplicated)="onInvoiceDuplicated($event)"></invoice-list>

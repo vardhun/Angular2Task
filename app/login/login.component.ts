@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+
+import { AuthenticationService, User } from '../shared/authentication.service';
 
 
 @Component ({
@@ -6,8 +9,16 @@ import { Component } from '@angular/core';
 })
 
 export class LoginComponent{
-    public pageTitle: string = "Welcome";
-    logForm(value: any) {
-    console.log(value);
-  }
+    
+    public user = new User('','');
+    public errorMsg = '';
+ 
+    constructor(
+        private _service:AuthenticationService) {}
+ 
+    login() {
+        if(!this._service.login(this.user)){
+            this.errorMsg = 'Failed to login';
+        }
+    }
 }

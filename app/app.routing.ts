@@ -6,6 +6,7 @@ import { LoginComponent } from './login/login.component';
 
 
 const appRoutes: Routes = [
+    { path: '', redirectTo: 'invoices', pathMatch: 'full'},
     {
         path: 'invoices',
         component: InvoicesComponent

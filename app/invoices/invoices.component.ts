@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
 import { IInvoice } from './invoice';
-import { InvoiceService } from './invoice.service';
+import { InvoiceService } from '../shared/invoice.service';
+import { AuthenticationService } from '../shared/authentication.service';
 
 import { InvoiceFormComponent } from '../invoices/invoice-form/invoice-form.component';
-import { InvoiceSearchComponent } from '../invoices/invoice-search/invoice-search.component';
 import { InvoiceListComponent } from '../invoices/invoice-list/invoice-list.component';
 
 
@@ -12,21 +12,26 @@ import { InvoiceListComponent } from '../invoices/invoice-list/invoice-list.comp
     selector: 'invoices',
     templateUrl: './app/invoices/invoices.component.html',
     styleUrls: ['./app/invoices/invoices.component.css'],
-    directives: [InvoiceFormComponent, InvoiceSearchComponent, InvoiceListComponent]
+    directives: [InvoiceFormComponent, InvoiceListComponent]
 })
 export class InvoicesComponent implements OnInit {
     invoices: IInvoice[];
     invoiceService: InvoiceService;
 
-    constructor(invoiceService: InvoiceService) {
+    constructor(invoiceService: InvoiceService, private authService: AuthenticationService) {
         this.invoices = [];
         this.invoiceService = invoiceService;
     }
 
+   
     ngOnInit() {
+        this.authService.checkCredentials();
         this.invoiceService.getInvoices().then(invoices => this.invoices = invoices);
     }
 
+    logout() {
+        this.authService.logout();
+    }
     onInvoiceAdded(invoice: IInvoice): void {
         this.invoiceService.addInvoice(invoice).then(invoice => this.addInvoice(invoice));
     }
@@ -39,8 +44,9 @@ export class InvoicesComponent implements OnInit {
         this.invoiceService.deleteInvoice(invoice).then(invoice => this.deleteInvoice(invoice));
     }
 
-    inInvoiceSearched(invoices: IInvoice[]):void{
-        this.invoices = invoices;
+    onInvoiceSearched(invoices: IInvoice[]):void{
+        console.log(invoices);
+        //this.invoices = invoices;
     }
 
     private addInvoice(invoice: IInvoice): void {

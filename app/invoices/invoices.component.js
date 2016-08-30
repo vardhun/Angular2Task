@@ -9,18 +9,23 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var invoice_service_1 = require('./invoice.service');
+var invoice_service_1 = require('../shared/invoice.service');
+var authentication_service_1 = require('../shared/authentication.service');
 var invoice_form_component_1 = require('../invoices/invoice-form/invoice-form.component');
-var invoice_search_component_1 = require('../invoices/invoice-search/invoice-search.component');
 var invoice_list_component_1 = require('../invoices/invoice-list/invoice-list.component');
 var InvoicesComponent = (function () {
-    function InvoicesComponent(invoiceService) {
+    function InvoicesComponent(invoiceService, authService) {
+        this.authService = authService;
         this.invoices = [];
         this.invoiceService = invoiceService;
     }
     InvoicesComponent.prototype.ngOnInit = function () {
         var _this = this;
+        this.authService.checkCredentials();
         this.invoiceService.getInvoices().then(function (invoices) { return _this.invoices = invoices; });
+    };
+    InvoicesComponent.prototype.logout = function () {
+        this.authService.logout();
     };
     InvoicesComponent.prototype.onInvoiceAdded = function (invoice) {
         var _this = this;
@@ -34,8 +39,9 @@ var InvoicesComponent = (function () {
         var _this = this;
         this.invoiceService.deleteInvoice(invoice).then(function (invoice) { return _this.deleteInvoice(invoice); });
     };
-    InvoicesComponent.prototype.inInvoiceSearched = function (invoices) {
-        this.invoices = invoices;
+    InvoicesComponent.prototype.onInvoiceSearched = function (invoices) {
+        console.log(invoices);
+        //this.invoices = invoices;
     };
     InvoicesComponent.prototype.addInvoice = function (invoice) {
         this.invoices.push(invoice);
@@ -54,9 +60,9 @@ var InvoicesComponent = (function () {
             selector: 'invoices',
             templateUrl: './app/invoices/invoices.component.html',
             styleUrls: ['./app/invoices/invoices.component.css'],
-            directives: [invoice_form_component_1.InvoiceFormComponent, invoice_search_component_1.InvoiceSearchComponent, invoice_list_component_1.InvoiceListComponent]
+            directives: [invoice_form_component_1.InvoiceFormComponent, invoice_list_component_1.InvoiceListComponent]
         }), 
-        __metadata('design:paramtypes', [invoice_service_1.InvoiceService])
+        __metadata('design:paramtypes', [invoice_service_1.InvoiceService, authentication_service_1.AuthenticationService])
     ], InvoicesComponent);
     return InvoicesComponent;
 }());

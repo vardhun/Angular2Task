@@ -3,6 +3,7 @@ var router_1 = require('@angular/router');
 var invoices_component_1 = require('./invoices/invoices.component');
 var login_component_1 = require('./login/login.component');
 var appRoutes = [
+    { path: '', redirectTo: 'invoices', pathMatch: 'full' },
     {
         path: 'invoices',
         component: invoices_component_1.InvoicesComponent
